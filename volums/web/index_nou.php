@@ -1,5 +1,5 @@
 <html>
     <?php
-    echo "index2";
+    echo "index3.1";
     ?>
     </html>
