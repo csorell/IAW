@@ -1,0 +1,37 @@
+version: "3"
+services:
+  apache:
+    image: php:7.4-apache
+    stdin_open: true # docker run -i
+    tty: true # docker run -t
+    volumes:
+      - ./volums/web:/var/www/html/
+    expose:
+      - 81
+    ports:
+      - 81:80 
+  db:
+    image: mariadb:10.8
+    environment:
+      - MYSQL_ROOT_PASSWORD=iesmanacor
+      - MYSQL_USER=iaw
+      - MYSQL_PASSWORD=iesmanacor
+      - MYSQL_DATABASE=iaw
+    volumes:
+      - ./volums/mariadb:/var/lib/mysql:delegated
+    expose:
+      - 3307
+    ports:
+      - 3307:3306
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - UPLOAD_LIMIT=300M
+    # restart: always
+    ports:
+      - 8083:80
+    volumes:
+      - /sessions
+    depends_on:
+      - db
