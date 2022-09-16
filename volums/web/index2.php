@@ -1,5 +1,5 @@
 <html>
     <?php
-    echo "Index2: index";
+    echo "Index2: index canvi web";
     ?>
     </html>
